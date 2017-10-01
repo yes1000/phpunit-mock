@@ -29,9 +29,9 @@ class PHPUnit_Extensions_MockFunction {
      * Construct
      *
      * @param string $function
-     * @param PHPUnit_Framework_TestCase $testCase
+     * @param PHPUnit_Framework_TestCase|\PHPUnit\Framework\TestCase $testCase
      */
-    public function __construct($function, PHPUnit_Framework_TestCase $testCase) {
+    public function __construct($function, $testCase) {
         if ( ! function_exists($function) ) {
             throw new InvalidArgumentException("Invalid function name '$function'");
         }

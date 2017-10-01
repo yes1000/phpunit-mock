@@ -34,9 +34,9 @@ class PHPUnit_Extensions_MockClass {
      * PHPUnit_Extensions_MockClass constructor.
      * @param $class
      * @param $methods
-     * @param PHPUnit_Framework_TestCase $testCase
+     * @param PHPUnit_Framework_TestCase|\PHPUnit\Framework\TestCase $testCase
      */
-    public function __construct($class, $methods, PHPUnit_Framework_TestCase $testCase) {
+    public function __construct($class, $methods, $testCase) {
         if ( ! class_exists($class) ) {
             throw new InvalidArgumentException("Invalid class name '$class'");
         }

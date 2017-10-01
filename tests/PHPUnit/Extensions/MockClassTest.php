@@ -39,6 +39,12 @@ class Order {
     }
 }
 
+if (! class_exists("PHPUnit_Framework_TestCase") ) {
+    class PHPUnit_Framework_TestCase extends \PHPUnit\Framework\TestCase {
+
+    }
+}
+
 class PHPUnit_Extensions_MockClassTest extends PHPUnit_Framework_TestCase {
 
     /**
@@ -134,10 +140,10 @@ class PHPUnit_Extensions_MockClassTest extends PHPUnit_Framework_TestCase {
         $mockClass = new PHPUnit_Extensions_MockClass('Calculate', ['add'], $this);
         $this->assertNull((new Calculate(4, 2))->add());
     }
-    
+
     /**
      * @test
-     */    
+     */
     public function expect_return_correct_object() {
         $expected = 'PHPUnit_Framework_MockObject_Builder_InvocationMocker';
         $mockClass = new PHPUnit_Extensions_MockClass('Calculate', ['add'], $this);

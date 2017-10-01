@@ -1,4 +1,11 @@
 <?php
+
+if ( ! class_exists("PHPUnit_Framework_TestCase") ) {
+    class PHPUnit_Framework_TestCase extends \PHPUnit\Framework\TestCase {
+
+    }
+}
+
 /**
  * MockFunction Test
  * @since  2015-11-21
@@ -12,8 +19,7 @@ class PHPUnit_Extensions_MockFunctionTest extends PHPUnit_Framework_TestCase {
         $value = 'non date value';
 
         $mockFunction = new PHPUnit_Extensions_MockFunction('date', $this);
-        $mockFunction->expects($this->any())
-            ->will($this->returnValue($value));
+        $mockFunction->expects($this->any())->will($this->returnValue($value));
 
         $this->assertEquals($value, date());
     }
@@ -25,8 +31,7 @@ class PHPUnit_Extensions_MockFunctionTest extends PHPUnit_Framework_TestCase {
         $format = 'Y-m-d H:i:s';
 
         $mockFunction = new PHPUnit_Extensions_MockFunction('date', $this);
-        $mockFunction->expects($this->once())
-            ->with($this->equalTo($format));
+        $mockFunction->expects($this->once())->with($this->equalTo($format));
 
         date($format);
     }
@@ -59,8 +64,7 @@ class PHPUnit_Extensions_MockFunctionTest extends PHPUnit_Framework_TestCase {
         $value = 'non date value';
 
         $mockFunction = new PHPUnit_Extensions_MockFunction('date', $this);
-        $mockFunction->expects($this->any())
-            ->will($this->returnValue($value));
+        $mockFunction->expects($this->any())->will($this->returnValue($value));
         $mockFunction->restore();
         $mockFunction->mock();
 
@@ -74,12 +78,12 @@ class PHPUnit_Extensions_MockFunctionTest extends PHPUnit_Framework_TestCase {
         $mockFunction = new PHPUnit_Extensions_MockFunction('date', $this);
         $this->assertNull(date());
     }
-    
+
     /**
      * @test
-     */    
+     */
     public function expect_return_correct_object() {
-        $expected = 'PHPUnit_Framework_MockObject_Builder_InvocationMocker';
+        $expected     = 'PHPUnit_Framework_MockObject_Builder_InvocationMocker';
         $mockFunction = new PHPUnit_Extensions_MockFunction('date', $this);
         $this->assertInstanceOf($expected, $mockFunction->expects($this->any()));
     }
@@ -97,15 +101,13 @@ class PHPUnit_Extensions_MockFunctionTest extends PHPUnit_Framework_TestCase {
      * @test
      */
     public function creating_two_instance_for_different_functions() {
-        $value1 = 'testval1';
+        $value1   = 'testval1';
         $mockDate = new PHPUnit_Extensions_MockFunction('date', $this);
-        $mockDate->expects($this->once())
-            ->will($this->returnValue($value1));
+        $mockDate->expects($this->once())->will($this->returnValue($value1));
 
-        $value2 = 'testval2';
+        $value2   = 'testval2';
         $mockTime = new PHPUnit_Extensions_MockFunction('time', $this);
-        $mockTime->expects($this->once())
-            ->will($this->returnValue($value2));
+        $mockTime->expects($this->once())->will($this->returnValue($value2));
 
         $this->assertEquals($value1, date());
         $this->assertEquals($value2, time());
