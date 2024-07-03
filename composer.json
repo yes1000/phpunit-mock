@@ -1,5 +1,5 @@
 {
-    "name" : "lancerhe/phpunit-mock",
+    "name" : "yes1000/phpunit-mock",
     "description" : "PHPUnit extension to Mock PHP internal functions using Runkit.",
     "keywords" : [
         "phpunit",
